@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    background-color: #141414;
+    color: white;
+}
+
+header {
+    padding: 10px 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+.informativo {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    min-height: 90px;
+}
+
+.main-game {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.regras {
+    max-width: 300px;
+}
+
+.genius {
+    display: grid;
+    grid-template-areas: 'verde vermelho' 'amarelo azul';
+    grid-gap: 10px;
+    border: 1px solid #141414;
+    background-color: #141414;
+    border-radius: 100%;
+    width: 550px;
+    height: 550px;
+}
+
+.genius::after {
+    position: absolute;
+    content: 'GENIUS';
+    left: 24%;
+    top: 42%;
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: white;
+    background: #141414;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 8em;
+}
+
+.blue {
+    grid-area: azul;
+    background-color: blue;
+    border-bottom-right-radius: 100%;
+}
+
+.red {
+    grid-area: vermelho;
+    background-color: red;
+    border-top-right-radius: 100%;
+}
+
+.yellow {
+    grid-area: amarelo;
+    background-color: yellow;
+    border-bottom-left-radius: 100%;
+}
+
+.green {
+    grid-area: verde;
+    background-color: green;
+    border-top-left-radius: 100%;
+}
+
+.selected {
+    opacity: 0.6;
+}
+
+@media screen and (min-width:1330px) {}
+
+@media screen and (max-width:992px) {
+    .genius p.center {
+        top: 16%;
+        left: 0;
+        bottom: 0;
+        right: 32%;
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px) {
+    .genius {
+        width: 375px;
+        height: 375px;
+    }
+    .genius::after {
+        left: 26%;
+        top: 39%;
+        width: 160px;
+        height: 160px;
+        line-height: 5em;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .main-game {
+        flex-direction: column;
+        height: 100%;
+    }
+    .genius {
+        width: 45vh;
+        height: 45vh;
+    }
+    .regras {
+        margin-top: 20px;
+    }
+    .genius::after {
+        top: 50%;
+        margin-top: -20vh;
+        left: 50%;
+        margin-left: -11vh;
+        width: 150px;
+        height: 150px;
+        font-size: 1.3rem;
+        line-height: 7em;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .genius::after {
+        top: 50%;
+        margin-top: -15vh;
+        left: 50%;
+        margin-left: -11vh;
+        width: 170px;
+        height: 170px;
+        font-size: 1.3rem;
+        line-height: 8em;
+    }
+}
