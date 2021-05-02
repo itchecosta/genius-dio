@@ -83,13 +83,19 @@
         </header>
 
         <section class="container informativo">
-            <div class="nivel col-md-3">
-                <b>Nível: </b>
-                <p id="nivel">01</p>
+            <div class="action col-md-2">
+                <b>Ações: </b>
+                <p><a href="" onclick="playGame()" class="btn btn-sm btn-primary mt-2"><i class="fas fa-play-circle"></i> Jogar</a></p>
             </div>
-            <div class="score col-md-3">
-                <b>Pontos: </b>
-                <p id="pontos">00</p>
+            <div class="count col-md-4">
+                <div class="nivel col-md-6">
+                    <b>Nível: </b>
+                    <p id="nivel" class="mt-2">01</p>
+                </div>
+                <div class="score col-md-6">
+                    <b>Pontos: </b>
+                    <p id="pontos" class="mt-2">00</p>
+                </div>
             </div>
             <div class="share col-md-6">
                 <b>Compartilhe: </b>
@@ -123,6 +129,7 @@
             </div>
         </section>
         <script type="text/javascript" src="script.js"></script>
+        <script src="https://kit.fontawesome.com/314a2a7e49.js" crossorigin="anonymous"></script>
         <script type='text/javascript' src="//platform-api.sharethis.com/js/sharethis.js#property=5b3fa66e47b80c00119666b2&product=inline-share-buttons" async='async'></script>
     </body>
 

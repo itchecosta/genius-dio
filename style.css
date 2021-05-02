@@ -17,6 +17,14 @@ h1 {
     justify-content: space-around;
     align-items: start;
     min-height: 90px;
+    flex-wrap: wrap;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-width: 190px;
 }
 
 .main-game {
@@ -42,7 +50,8 @@ h1 {
     height: 550px;
 }
 
-.genius::after {
+
+/* .genius::after {
     position: absolute;
     content: 'GENIUS';
     left: 24%;
@@ -56,34 +65,50 @@ h1 {
     border-radius: 50%;
     text-align: center;
     line-height: 8em;
-}
+} */
 
 .blue {
     grid-area: azul;
-    background-color: blue;
+    background-color: #141414;
     border-bottom-right-radius: 100%;
+    background: radial-gradient(circle 1px at -5% 0%, transparent, transparent 120px, blue 100px);
+    background-size: 100% 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
 }
 
 .red {
     grid-area: vermelho;
-    background-color: red;
+    background-color: #141414;
     border-top-right-radius: 100%;
+    background: radial-gradient(circle 1px at -5% 105%, transparent, transparent 120px, red 100px);
+    background-size: 100% 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
 }
 
 .yellow {
     grid-area: amarelo;
-    background-color: yellow;
+    background-color: #141414;
     border-bottom-left-radius: 100%;
+    background: radial-gradient(circle 1px at 105% 0%, transparent, transparent 120px, yellow 100px);
+    background-size: 100% 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
 }
 
 .green {
     grid-area: verde;
-    background-color: green;
+    background-color: #141414;
     border-top-left-radius: 100%;
+    background: radial-gradient(circle 1px at 105% 105%, transparent, transparent 120px, green 100px);
+    background-size: 100% 100%;
+    background-position: 0 0, 100% 0;
+    background-repeat: no-repeat;
 }
 
 .selected {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 @media screen and (min-width:1330px) {}
@@ -104,12 +129,24 @@ h1 {
         width: 375px;
         height: 375px;
     }
-    .genius::after {
+    /* .genius::after {
         left: 26%;
         top: 39%;
         width: 160px;
         height: 160px;
         line-height: 5em;
+    } */
+    .blue {
+        background: radial-gradient(circle 1px at -20% -20%, transparent, transparent 120px, blue 100px);
+    }
+    .red {
+        background: radial-gradient(circle 1px at -20% 120%, transparent, transparent 120px, red 100px);
+    }
+    .yellow {
+        background: radial-gradient(circle 1px at 120% -20%, transparent, transparent 120px, yellow 100px);
+    }
+    .green {
+        background: radial-gradient(circle 1px at 120% 120%, transparent, transparent 120px, green 100px);
     }
 }
 
@@ -125,7 +162,7 @@ h1 {
     .regras {
         margin-top: 20px;
     }
-    .genius::after {
+    /* .genius::after {
         top: 50%;
         margin-top: -20vh;
         left: 50%;
@@ -134,11 +171,11 @@ h1 {
         height: 150px;
         font-size: 1.3rem;
         line-height: 7em;
-    }
+    } */
 }
 
 @media screen and (max-width:480px) {
-    .genius::after {
+    /* .genius::after {
         top: 50%;
         margin-top: -15vh;
         left: 50%;
@@ -147,5 +184,17 @@ h1 {
         height: 170px;
         font-size: 1.3rem;
         line-height: 8em;
+    } */
+    .blue {
+        background: radial-gradient(circle 1px at -30% -30%, transparent, transparent 120px, blue 100px);
+    }
+    .red {
+        background: radial-gradient(circle 1px at -30% 130%, transparent, transparent 120px, red 100px);
+    }
+    .yellow {
+        background: radial-gradient(circle 1px at 130% -30%, transparent, transparent 120px, yellow 100px);
+    }
+    .green {
+        background: radial-gradient(circle 1px at 130% 130%, transparent, transparent 120px, green 100px);
     }
 }

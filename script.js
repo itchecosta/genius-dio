@@ -1,7 +1,8 @@
 let order = []; // ordem
 let clickedOrder = []; //ordem dos cliques
 let score = 0; // pontuação
-let level = 1;
+let level = 1; // nível
+let lose = false; // perdeu
 
 // 0 - verde
 // 1 - vermelho
@@ -24,7 +25,7 @@ let shuffleOrder = () => {
     order[order.length] = colorOrder;
     //clique continua vazio
     clickedOrder = [];
-
+    console.log(order);
     //acender o número sorteado
     for (let i in order) {
 
@@ -48,11 +49,12 @@ let lightColor = (element, number) => {
 let checkOrder = () => {
     for (let i in clickedOrder) {
         if (clickedOrder[i] != order[i]) {
+            lose = true;
             gameOver();
             break;
         }
     }
-    if (clickedOrder.length == order.length) {
+    if (clickedOrder.length == order.length && lose == false) {
         score++;
         //alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`);
         scoreTela(score);
@@ -65,10 +67,10 @@ let checkOrder = () => {
 let click = (color) => {
     clickedOrder[clickedOrder.length] = color;
     createColorElement(color).classList.add('selected');
+    soundColorPlay(color);
 
     setTimeout(() => {
         createColorElement(color).classList.remove('selected');
-        soundColorPlay(color);
         checkOrder();
     }, 450);
 }
@@ -98,13 +100,15 @@ let gameOver = () => {
     order = [];
     clickedOrder = [];
 
-    playGame();
+    // playGame();
 }
 
 // função de inicio do jogo
 let playGame = () => {
+    event.preventDefault();
     alert(`Bem vindo ao Genius! Iniciando novo jogo!`);
     score = 0;
+    lose = false;
 
     scoreTela(score);
     levelTela(score);
@@ -135,15 +139,35 @@ let soundColorPlay = (color) => {
     if (color == 0) {
         let audio = new Audio('./audio/blue.wav');
         audio.play();
+        if (audio.currentTime > 0.5) {
+            setTimeout(() => {
+                audio.pause();
+            }, 450);
+        }
     } else if (color == 1) {
         let audio = new Audio('./audio/red.wav');
         audio.play();
+        if (audio.currentTime > 0.5) {
+            setTimeout(() => {
+                audio.pause();
+            }, 450);
+        }
     } else if (color == 2) {
         let audio = new Audio('./audio/yellow.wav');
         audio.play();
+        if (audio.currentTime > 0.5) {
+            setTimeout(() => {
+                audio.pause();
+            }, 450);
+        }
     } else if (color == 3) {
         let audio = new Audio('./audio/green.wav');
         audio.play();
+        if (audio.currentTime > 0.5) {
+            setTimeout(() => {
+                audio.pause();
+            }, 450);
+        }
     }
 }
 
@@ -153,4 +177,4 @@ let soundErrorPlay = () => {
 }
 
 // inicio do jogo
-playGame();
+// playGame();
