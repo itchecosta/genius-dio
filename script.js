@@ -25,20 +25,21 @@ let shuffleOrder = () => {
     order[order.length] = colorOrder;
     //clique continua vazio
     clickedOrder = [];
-    console.log(order);
+
     //acender o número sorteado
     for (let i in order) {
 
         let elementColor = createColorElement(order[i]);
-        lightColor(elementColor, Number(i) + 1);
+        lightColor(order[i], elementColor, Number(i) + 1);
     }
 }
 
 //acender a próxima cor
-let lightColor = (element, number) => {
+let lightColor = (color, element, number) => {
     number = number * 700;
     setTimeout(() => {
         element.classList.add('selected');
+        soundColorPlay(color);
     }, number - 450);
     setTimeout(() => {
         element.classList.remove('selected');
@@ -59,7 +60,9 @@ let checkOrder = () => {
         //alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`);
         scoreTela(score);
         levelTela(score);
-        nextlevel();
+        setTimeout(() => {
+            nextlevel();
+        }, 2000);
     }
 }
 
@@ -95,8 +98,16 @@ let nextlevel = () => {
 
 // função para game over
 let gameOver = () => {
-    soundErrorPlay()
-    alert(`Pontuação: ${score}!\nVocê perdeu o jogo!\nClique em OK para iniciar um novo jogo!`);
+    //soundErrorPlay()
+    //alert(`Pontuação: ${score}!\nVocê perdeu o jogo!\nClique em OK para iniciar um novo jogo!`);
+    Swal.fire({
+        type: 'error',
+        title: 'Você perdeu o jogo!',
+        text: `Sua pontuação: ${score}!\n\nClique em Jogar para iniciar um novo jogo!`,
+        onOpen: () => {
+            soundErrorPlay();
+        }
+    });
     order = [];
     clickedOrder = [];
 
@@ -106,13 +117,34 @@ let gameOver = () => {
 // função de inicio do jogo
 let playGame = () => {
     event.preventDefault();
-    alert(`Bem vindo ao Genius! Iniciando novo jogo!`);
+
     score = 0;
     lose = false;
 
     scoreTela(score);
     levelTela(score);
-    nextlevel();
+
+    //alert(`Bem vindo ao Genius! Iniciando novo jogo!`);
+    Swal.fire({
+        title: "Bem vindo ao Genius!",
+        html: 'Iniciando novo jogo em <strong></strong> segundos.',
+        type: "info",
+        showConfirmButton: false,
+        timer: 3000,
+        onOpen: () => {
+            Swal.showLoading()
+            timerInterval = setInterval(() => {
+                Swal.getContent().querySelector('strong')
+                    .textContent = Math.ceil(Swal.getTimerLeft() / 1000)
+            }, 100)
+        },
+        onClose: () => {
+            clearInterval(timerInterval)
+        }
+    });
+    setTimeout(() => {
+        nextlevel();
+    }, 4000);
 }
 
 //atualiza pontuação na tela
@@ -122,7 +154,7 @@ let scoreTela = (score) => {
 
 //atualiza pontuação na tela
 let levelTela = (score) => {
-    console.log((score / 5));
+    //console.log((score / 5));
     level = ((score / 5) >= 1) ? (score / 5) + 1 : 1;
     nivel.innerHTML = '0' + Math.floor(level);
 }
@@ -136,15 +168,15 @@ blue.onclick = () => click(3);
 
 // som da cor
 let soundColorPlay = (color) => {
-    if (color == 0) {
-        let audio = new Audio('./audio/blue.wav');
+    if ((color == 0) || (color == 'green')) {
+        let audio = new Audio('./audio/green.wav');
         audio.play();
         if (audio.currentTime > 0.5) {
             setTimeout(() => {
                 audio.pause();
             }, 450);
         }
-    } else if (color == 1) {
+    } else if ((color == 1) || (color == 'red')) {
         let audio = new Audio('./audio/red.wav');
         audio.play();
         if (audio.currentTime > 0.5) {
@@ -152,7 +184,7 @@ let soundColorPlay = (color) => {
                 audio.pause();
             }, 450);
         }
-    } else if (color == 2) {
+    } else if ((color == 2) || (color == 'yellow')) {
         let audio = new Audio('./audio/yellow.wav');
         audio.play();
         if (audio.currentTime > 0.5) {
@@ -160,8 +192,8 @@ let soundColorPlay = (color) => {
                 audio.pause();
             }, 450);
         }
-    } else if (color == 3) {
-        let audio = new Audio('./audio/green.wav');
+    } else if ((color == 3) || (color == 'blue')) {
+        let audio = new Audio('./audio/blue.wav');
         audio.play();
         if (audio.currentTime > 0.5) {
             setTimeout(() => {
